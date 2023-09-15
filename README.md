@@ -4,10 +4,12 @@ Somos uma aplicação Web que realiza busca de vagas na área da tecnologia, em 
 as vagas com maior afinidade e se candidate a elas de forma simplificada e gerando um perfil assertivo para aquela vaga.
 
 
-#Install packages:
+# Install packages
+
 `pip install -r requirements.txt`
 
-#Run docker:
+# Run docker
+
 `docker-compose up -d`
 
 MySql 5.7
