@@ -2,6 +2,7 @@ from flask import Flask
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 
+# cria uma variável e chama a aplicação Flask
 app = Flask(__name__)
 
 # CORS é um mecanismo usado para adicionar cabeçalhos HTTP que informam aos navegadores para permitir
@@ -15,8 +16,6 @@ app.config.from_pyfile('config.py')
 
 db = SQLAlchemy(app)
 
-from views import *
-
 if __name__ == '__main__':
     app.run(port=3000,host='localhost',debug=True)
-
+# roda a aplicação
