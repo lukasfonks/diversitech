@@ -1,6 +1,6 @@
 
 class Usuarios:
-    def __init__(self, name, rg, cpf, data_nascimento, sexo, email, senha):
+    def __init__(self, name, rg, cpf, data_nascimento, sexo, email, senha, id):
         self.name = name
         self.rg = rg
         self.cpf = cpf
@@ -8,6 +8,7 @@ class Usuarios:
         self.sexo = sexo
         self.email = email
         self.senha = senha
+        self.id = id
 
 # objeto_usuario1 = Usuarios('Lukas Fonks', '12650333', '04862053555', '1991-05-08', 'M','ls_fonseca@hotmail.com', '1234')
 # # objeto_usuario2 = Usuarios('Emy Mansur', '12650334', '04862053566', '1991-05-08', 'F','ls_fonseca@hotmail.com')
