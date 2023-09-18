@@ -38,7 +38,7 @@ def view():
     resultado = cursor.fetchall() # ler o banco de dados
 
     for i in resultado:
-        user = Cadastro(i[0], i[1], i[2], i[3], i[4], i[5], i[6], 1[7])
+        user = Cadastro(i[0], i[1], i[2], i[3], i[4], i[5], i[6])
         users.append(user)
 
     cursor.close()
@@ -52,7 +52,7 @@ def update(user):
 
     comando = ("UPDATE db_diversitech.usuarios SET nome= user.name, rg= user.rg, cpf= user.cpf,"
                "data_nascimento= user.data_nascimento, sexo= user.sexo, email= user.email, "
-               "senha= user.senha , id= user.id WHERE id= user.id")
+               "senha= user.senha WHERE id= user.id")
     cursor.execute(comando)
     conexao.commit()  # edita o banco de dados
 
