@@ -1,19 +1,18 @@
 version: '3.3'
 volumes:
-  redis-data:
-    driver: local
   data-db:
-  # app:
 services:
   db:
     image: mysql:5.7
     ports:
       - '3306:3306'
     volumes:
-      - data-db:/var/lib/mysql
+      - data-db:/var/lib/mysqls
     environment:
       - MYSQL_ROOT_PASSWORD=123456
       - MYSQL_DATABASE=db_diversitech
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=123456
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
     links:
@@ -22,3 +21,5 @@ services:
       - 80:80
     environment:
       - PMA_ARBITRARY=1
+      - PMA_USER=root
+      - PMA_PASSWORD=123456

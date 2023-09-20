@@ -17,7 +17,7 @@ def insert(user):
 
     cursor = conexao.cursor()
     comando = (f'INSERT INTO usuarios (nome, rg, cpf, data_nascimento, sexo, email, senha) '
-               f'VALUES ("{user.nome}", "{user.rg}", "{user.cpf}", "{user.data_nascimento}", "{user.sexo}", "{user.email}", "{user.senha}")')
+               f'VALUES ("{user.nome[0]}", "{user.rg[0]}", "{user.cpf[0]}", "{user.data_nascimento[0]}", "{user.sexo[0]}", "{user.email[0]}", "{user.senha}")')
 
     cursor.execute(comando)
 
@@ -25,7 +25,7 @@ def insert(user):
 
     cursor.close()
     conexao.close()
-
+    return comando
 
 def view():
     conexao = conexao_abrir()
@@ -38,7 +38,7 @@ def view():
     resultado = cursor.fetchall() # ler o banco de dados
 
     for i in resultado:
-        user = Cadastro(i[0], i[1], i[2], i[3], i[4], i[5], i[6])
+        user = Cadastro(i[1], i[2], i[3], i[4], i[5], i[6], i[7], i[0])
         users.append(user)
 
     cursor.close()

@@ -7,9 +7,9 @@ class Cadastro(db.Model):
     sexo = db.Column(db.String(1), nullable=False)
     email = db.Column(db.String(50), nullable=False)
     senha = db.Column(db.String(45), nullable=True)
-    id = db.Column(db.String(45), primary_key=True, nullable=True)
+    id = db.Column(db.String(45), primary_key=True, nullable=False)
 
-    def __init__(self, nome, rg, cpf, data_nascimento, sexo, email, senha):
+    def __init__(self, nome, rg, cpf, data_nascimento, sexo, email, senha, id):
         self.nome = nome
         self.rg = rg
         self.cpf = cpf
@@ -17,6 +17,7 @@ class Cadastro(db.Model):
         self.sexo = sexo
         self.email = email
         self.senha = senha
+        self.id = id
        
 
     def serialize(self):
@@ -28,7 +29,7 @@ class Cadastro(db.Model):
             'sexo': self.sexo,
             'email': self.email,
             'senha': self.senha,
-           
+            'id': self.id,
         }
 
     def __repr__(self):

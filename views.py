@@ -25,14 +25,14 @@ def postRequest():
     rg= req_data['rg'],
     cpf = req_data['cpf'],
     data_nascimento = req_data['birthday'],
-    # sexo = req_data['sex'],
+    sexo = req_data['sex'],
     email = req_data['email'],
     senha = req_data['password']
 
-    user = Cadastro(nome, rg, cpf, data_nascimento, 'M', email, senha, id)
-    db_conexao.insert(user)
+    user = Cadastro(nome, rg, cpf, data_nascimento, sexo, email, senha,'')
+    a = db_conexao.insert(user)
     return jsonify({
-        'res': serialize(user),
+        'res': a,
         'status': '201',
     })
 

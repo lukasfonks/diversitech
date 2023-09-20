@@ -117,11 +117,12 @@
   </body>
   <script>
     const baseUrl = "http://localhost:3000/";
-    let userId = ''
-    let users = []
+    let userId = "";
+    let users = [];
 
-    function changeButtonSubmitName(){
-      document.getElementById('submit').innerText = userId === '' ? 'Cadastrar' : 'Editar'
+    function changeButtonSubmitName() {
+      document.getElementById("submit").innerText =
+        userId === "" ? "Cadastrar" : "Editar";
     }
 
     async function getUsers() {
@@ -131,7 +132,7 @@
       });
 
       const { data } = await resp.json();
-      users = data
+      users = data;
 
       const table = data.map(
         (e) => `
@@ -140,8 +141,8 @@
           <td>${e.rg}</td>
           <td>${e.cpf}</td>
           <td>${e.email}</td>
-          <td>${e.sex}</td>
-          <td>${e.birthday}</td>
+          <td>${e.sexo}</td>
+          <td>${e.data_nascimento}</td>
           <td><button onClick="editUser(${e.id})">Edit</button></td>
           <td><button onClick="deleteUser(${e.id})">Del</button></td>
         </tr>
@@ -151,8 +152,10 @@
       container.innerHTML = table;
     }
 
-    function deleteUser(id){
-      fetch(baseUrl+"users/"+id, { method: "DELETE" }).then((resp) => getUsers());
+    function deleteUser(id) {
+      fetch(baseUrl + "users/" + id, { method: "DELETE" }).then((resp) =>
+        getUsers()
+      );
     }
 
     function onSubmit() {
@@ -164,8 +167,7 @@
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
 
-
-      if(userId === ''){
+      if (userId === "") {
         fetch(baseUrl + "users", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -180,10 +182,10 @@
             password,
           }),
         }).then((resp) => {
-          getUsers()
-          limparFormulario()
+          getUsers();
+          // limparFormulario()
         });
-      }else{
+      } else {
         fetch(baseUrl + "users", {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -198,40 +200,39 @@
             password,
           }),
         }).then((resp) => {
-          getUsers()
-          limparFormulario()
+          getUsers();
+          limparFormulario();
         });
       }
     }
 
-    function editUser(id){
-      console.log(users)
-      const user = users.find(user => user.id === id)
-      userId = user.id
+    function editUser(id) {
+      console.log(users);
+      const user = users.find((user) => user.id === id);
+      userId = user.id;
 
-      document.getElementById("name").value = user.name
-      document.getElementById("rg").value = user.rg
-      document.getElementById("cpf").value = user.cpf
-      document.getElementById("birthday").value = user.birthday
-      document.getElementById("sex").value = user.sex
-      document.getElementById("email").value = user.email
-      document.getElementById("password").value = user.password
+      document.getElementById("name").value = user.name;
+      document.getElementById("rg").value = user.rg;
+      document.getElementById("cpf").value = user.cpf;
+      document.getElementById("birthday").value = user.birthday;
+      document.getElementById("sex").value = user.sex;
+      document.getElementById("email").value = user.email;
+      document.getElementById("password").value = user.password;
 
-      changeButtonSubmitName()
+      changeButtonSubmitName();
     }
 
-    function limparFormulario(){
-      userId= ''
-      document.getElementById("name").value = ''
-      document.getElementById("rg").value = ''
-      document.getElementById("cpf").value = ''
-      document.getElementById("birthday").value = ''
-      document.getElementById("sex").value = ''
-      document.getElementById("email").value = ''
-      document.getElementById("password").value = ''
-      changeButtonSubmitName()
+    function limparFormulario() {
+      userId = "";
+      document.getElementById("name").value = "";
+      document.getElementById("rg").value = "";
+      document.getElementById("cpf").value = "";
+      document.getElementById("birthday").value = "";
+      document.getElementById("sex").value = "";
+      document.getElementById("email").value = "";
+      document.getElementById("password").value = "";
+      changeButtonSubmitName();
     }
-
 
     getUsers();
   </script>
