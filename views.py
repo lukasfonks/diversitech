@@ -46,6 +46,7 @@ def update_req():
     sexo = req_data['sex'],
     email = req_data['email'],
     senha = req_data['password']
+    id = req_data['id']
 
     users_db = [b.serialize() for b in db_conexao.view()]
     for b in users_db:

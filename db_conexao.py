@@ -50,20 +50,21 @@ def update(user):
     conexao = conexao_abrir()
     cursor = conexao.cursor()
 
-    comando = ("UPDATE db_diversitech.usuarios SET nome= user.name, rg= user.rg, cpf= user.cpf,"
-               "data_nascimento= user.data_nascimento, sexo= user.sexo, email= user.email, "
-               "senha= user.senha WHERE id= user.id")
+    comando = ("UPDATE db_diversitech.usuarios SET nome=?, rg=?, cpf=?, data_nascimento=?, sexo=?, email=?, senha=? WHERE id= ?", 
+                (user.nome[0], user.rg[0], user.cpf[0], user.data_nascimento[0], user.sexo[0], user.email[0], user.senha, user.id))
     cursor.execute(comando)
     conexao.commit()  # edita o banco de dados
 
     cursor.close()
     conexao.close()
+   
+    # return user
 
 def delete(id):
     conexao = conexao_abrir()
     cursor = conexao.cursor()
 
-    comando = ('DELETE FROM db_diversitech.usuarios WHERE id= id')
+    comando = ("DELETE FROM db_diversitech.usuarios WHERE id=?", (id))
     cursor.execute(comando)
     conexao.commit() # edita o banco de dados
 
