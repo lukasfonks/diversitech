@@ -75,25 +75,12 @@ def delete_req(id):
     # view_args: A dict of view arguments that matched the request. If an exception happened
     # when matching, this will be .None
     req_args = request.view_args
-    users = [b.serialize() for b in db_conexao.view()]
-    if req_args:
-        for b in users:
-            if b['id'] == str(req_args['id']):
-                db_conexao.delete(b['id'])
-                updated_users = [b.serialize() for b in db_conexao.view()]
-                print('updated_users: ', updated_users)
-                return jsonify({
-                    'res': updated_users,
-                    'status': '200',
-                    'msg': 'Success deleting book by ID!👍😀',
-                    'no_of_books': len(updated_users)
-                })
-    else:
-        return jsonify({
-            'error': f"Error ⛔❌! No Book ID sent!",
-            'res': '',
-            'status': '404'
-        })
+    db_conexao.delete(req_args['id'])
+    
+    return jsonify({
+        'res': 'Deletou',
+        'status': '404'
+    })
     
 
 # A serialização é o processo de conversão do estado de um objeto em um formulário
