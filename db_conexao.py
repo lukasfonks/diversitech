@@ -52,8 +52,8 @@ def update(user):
 
     comando = (f'UPDATE db_diversitech.usuarios SET nome="{user.nome[0]}", rg="{user.rg[0]}", '
                f'cpf="{user.cpf[0]}", data_nascimento="{user.data_nascimento[0]}", sexo="{user.sexo[0]}", '
-               f'email="{user.email[0]}", senha="{user.senha}" WHERE id= {user.id})')
-    print('WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW',comando)
+               f'email="{user.email[0]}", senha="{user.senha}" WHERE id= {user.id}')
+    
     cursor.execute(comando)
     conexao.commit()  # edita o banco de dados
 
