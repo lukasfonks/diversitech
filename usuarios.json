@@ -1,9 +1,13 @@
 [
     {
+        "nome": "Lucas Fonseca",
+        "sexo": "Masculino",
         "email": "ls_fonseca@hotmail.com",
         "senha": "1234"
     },
     {
+        "nome": "Danilo Schleu",
+        "sexo": "Masculino",
         "email": "daniloschleu@gmail.com",
         "senha": "1234"
     }

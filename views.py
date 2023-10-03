@@ -14,8 +14,12 @@ def cadastro_usuarios():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    email = request.get_json('login')
-    senha =request.get_json('password')
+
+    # print(request.form)
+    email = request.get_json()['login']
+    senha = request.get_json()['password']
+    print(email)
+    print(senha)
     with open('usuarios.json') as usuarios:
         lista = json.load(usuarios)
         cont = 0
@@ -24,14 +28,12 @@ def login():
             if email == usuario['email'] and senha == usuario['senha']:
                 print('LOGIN FEITO')
                 return jsonify({
-                    'status': '200'
-                    })
+                    'user': usuario
+                }), 200
             if cont >= len(lista):
-                print('LOGIN NAO REALIZADO')
-                flash('Usuário ou senha inválido')
-                return jsonify(
-                    error = 404, text = str('ERRO - NOT FOUND')
-                )
+                return jsonify({
+                    'message': 'Usuário ou senha inválido'
+                }), 404
 
 @app.route('/cadastro_vagas')
 def cadastro_vagas():
