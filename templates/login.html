@@ -3,9 +3,12 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;700&display=swap" rel="stylesheet">
         
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        
 
         <style>
             *{
@@ -20,9 +23,23 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                flex-direction: column;
                 background-color: #E1E1E1;
-
+                position: relative;
             }
+
+            .title{
+                font-family: 'Teko';
+                font-size: 48px;
+                letter-spacing: 5px;
+                position: absolute;
+                left: 50%;
+                top: 10%;
+                transform: translate(-50%,0);
+                z-index: 9;
+                text-transform: capitalize;
+            }
+
             .modal{
                 width: 600px;
                 height: 400px;
@@ -107,6 +124,12 @@
     </head>
     <body>
         <div class="container">
+
+                <div class="title">
+                    diversitech
+                </div>
+
+
             <div class="modal">
                 <div class="field">
                     <label for="login">Login</label>
