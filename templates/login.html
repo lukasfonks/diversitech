@@ -192,7 +192,12 @@
           .then((e) => {
             console.log("retorno backend", e);
             if (e.status === 200) {
-              // location.href = 'cadastro.html'
+              location.href = "cadastro.html";
+            } else {
+              error.style.display = "block";
+              setTimeout(() => {
+                error.style.display = "none";
+              }, 3000);
             }
           })
           .catch(() => {
