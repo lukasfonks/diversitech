@@ -32,5 +32,5 @@ class Cadastro(db.Model):
             'id': self.id,
         }
 
-    def __repr__(self):
-        return '<Name %r>' % self.name
+    # def __repr__(self):
+    #     return '<Name %r>' % self.name

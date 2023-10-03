@@ -2,6 +2,23 @@ import mysql.connector
 
 from models import Cadastro
 
+def login(email, senha):
+    conexao = conexao_abrir()
+    user = {}
+    cursor = conexao.cursor()
+    comando = (f'SELECT * FROM db_diversitech.usuarios WHERE email="{email}" and senha="{senha}"')
+    cursor.execute(comando)
+
+    i = cursor.fetchall() # ler o banco de dados
+    if len(i) > 0:
+        i = i[0]
+        user = Cadastro(i[1], i[2], i[3], i[4], i[5], i[6], i[7], i[0])
+        user = user.serialize()
+       
+    cursor.close()
+    conexao.close()
+
+    return user
 
 def conexao_abrir():
     conexao = mysql.connector.connect(
@@ -32,7 +49,6 @@ def view():
     users = []
     cursor = conexao.cursor()
     comando = ("SELECT * FROM db_diversitech.usuarios")
-
     cursor.execute(comando)
 
     resultado = cursor.fetchall() # ler o banco de dados
