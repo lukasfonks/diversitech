@@ -1,10 +1,34 @@
 import db_conexao
 from app import app
-from flask import request, jsonify, render_template
+from flask import request, jsonify, render_template, redirect, flash
 from models import Cadastro
 
 @app.route('/')
-def visualizar():
+def home():
+    return render_template('login.html')
+
+@app.route('/login', methods=['POST'])
+def login():
+    email = request.get_json('email')
+    senha =request.get_json('senha')
+    with open('usuarios.json') as usuarios:
+        lista = json.load(usuarios)
+        cont = 0
+        for usuario in lista:
+            cont += 1
+            if email == usuario['email'] and senha == usuario['senha']:
+                return render_template('acesso.html')
+            if cont >= len(lista):
+                flash('Usuário ou senha inválido')
+                return redirect('/login')
+
+
+@app.route('/cadastro_vagas')
+def cadastro_vagas():
+    return render_template('cadastro_vagas.html')
+
+@app.route('/cadastro_usuarios')
+def cadastro_usuarios():
     return render_template('cadastro.html')
 
 @app.route('/users', methods=['GET'])
@@ -46,6 +70,7 @@ def update_req():
     sexo = req_data['sex'],
     email = req_data['email'],
     senha = req_data['password']
+    id = req_data['id']
 
     users_db = [b.serialize() for b in db_conexao.view()]
     for b in users_db:
@@ -74,25 +99,12 @@ def delete_req(id):
     # view_args: A dict of view arguments that matched the request. If an exception happened
     # when matching, this will be .None
     req_args = request.view_args
-    users = [b.serialize() for b in db_conexao.view()]
-    if req_args:
-        for b in users:
-            if b['id'] == str(req_args['id']):
-                db_conexao.delete(b['id'])
-                updated_users = [b.serialize() for b in db_conexao.view()]
-                print('updated_users: ', updated_users)
-                return jsonify({
-                    'res': updated_users,
-                    'status': '200',
-                    'msg': 'Success deleting book by ID!👍😀',
-                    'no_of_books': len(updated_users)
-                })
-    else:
-        return jsonify({
-            'error': f"Error ⛔❌! No Book ID sent!",
-            'res': '',
-            'status': '404'
-        })
+    db_conexao.delete(req_args['id'])
+    
+    return jsonify({
+        'res': 'Deletou',
+        'status': '404'
+    })
     
 
 # A serialização é o processo de conversão do estado de um objeto em um formulário
