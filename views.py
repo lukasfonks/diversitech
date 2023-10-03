@@ -1,35 +1,43 @@
 import db_conexao
 from app import app
 from flask import request, jsonify, render_template, redirect, flash
+import json
 from models import Cadastro
 
 @app.route('/')
 def home():
     return render_template('login.html')
 
-@app.route('/login', methods=['POST'])
+@app.route('/cadastro')
+def cadastro_usuarios():
+    return render_template('cadastro.html')
+
+@app.route('/login', methods=['GET', 'POST'])
 def login():
-    email = request.get_json('email')
-    senha =request.get_json('senha')
+    email = request.get_json('login')
+    senha =request.get_json('password')
     with open('usuarios.json') as usuarios:
         lista = json.load(usuarios)
         cont = 0
         for usuario in lista:
             cont += 1
             if email == usuario['email'] and senha == usuario['senha']:
-                return render_template('acesso.html')
+                print('LOGIN FEITO')
+                return jsonify({
+                    'status': '200'
+                    })
             if cont >= len(lista):
+                print('LOGIN NAO REALIZADO')
                 flash('Usuário ou senha inválido')
-                return redirect('/login')
-
+                return jsonify(
+                    error = 404, text = str('ERRO - NOT FOUND')
+                )
 
 @app.route('/cadastro_vagas')
 def cadastro_vagas():
     return render_template('cadastro_vagas.html')
 
-@app.route('/cadastro_usuarios')
-def cadastro_usuarios():
-    return render_template('cadastro.html')
+
 
 @app.route('/users', methods=['GET'])
 def getRequest():
