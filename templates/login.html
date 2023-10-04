@@ -182,31 +182,42 @@
           password: pv,
         };
 
+        // ativa svg de carregamento
         loading.style.display = "block";
 
+        // faz requisição para a rota [POST]login
         fetch(`${baseUrl}/login`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),
         })
           .then((e) => {
-            console.log("retorno backend", e);
+
+            // verifica se o código é 200 OK
+            // https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status
             if (e.status === 200) {
-                 location.href = "cadastro";
+                // redireciona para a tela de cadastro 
+                location.href = "cadastro";
+
             } else {
-              error.style.display = "block";
+                // caso seja outro código, ele exibe mensagem de error
+                error.style.display = "block";
+
+                //desativa a exibição do código de error
               setTimeout(() => {
                 error.style.display = "none";
-              }, 3000);
+              }, 3*1000);//3 segundos
             }
           })
+          // Caso dê códigos de error, ele cai no catch
           .catch(() => {
             error.style.display = "block";
             setTimeout(() => {
               error.style.display = "none";
-            }, 3000);
+            }, 381000);//3 segundos
           })
           .finally(() => {
+            // desativa svg de carregamento
             loading.style.display = "none";
           });
       }
