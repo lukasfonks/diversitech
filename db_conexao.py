@@ -6,11 +6,15 @@ def login(email, senha):
     conexao = conexao_abrir()
     user = {}
     cursor = conexao.cursor()
+    # seleciona do banco de dados todos usuarios que possuem o email e senha passados
     comando = (f'SELECT * FROM db_diversitech.usuarios WHERE email="{email}" and senha="{senha}"')
     cursor.execute(comando)
 
     i = cursor.fetchall() # ler o banco de dados
+    # valida se recebeu alguma informação de volta do banco de dados
     if len(i) > 0:
+        # Pega apenas o primeiro item da lista retornada. Organiza na classe Cadastro,
+        # aplica o método serialize e retorna pro views.py
         i = i[0]
         user = Cadastro(i[1], i[2], i[3], i[4], i[5], i[6], i[7], i[0])
         user = user.serialize()

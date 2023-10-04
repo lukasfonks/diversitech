@@ -1,7 +1,6 @@
 import db_conexao
 from app import app
-from flask import request, jsonify, render_template, redirect, flash
-import json
+from flask import request, jsonify, render_template
 from models import Cadastro
 
 @app.route('/')
@@ -14,25 +13,26 @@ def cadastro_usuarios():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    # Salva as informações digitadas no login
     email = request.get_json()['login']
     senha = request.get_json()['password']
     
+    # Passa as informações salvas para a função login que se conecta com o banco de dados
     user = db_conexao.login(email, senha)
-    
+    # Caso o retorno do db_conexao seja um conjunto com algum elemento significa que
+    # o login pode ser efetuado
     if len(user) > 0:
         return jsonify({
             'user': user
         }), 200
-    
-    return  jsonify({
-        'message': 'Usuário ou senha inválido'
-    }), 404
+    else:
+        return  jsonify({
+            'message': 'Usuário ou senha inválido'
+        }), 404
 
 @app.route('/cadastro_vagas')
 def cadastro_vagas():
     return render_template('cadastro_vagas.html')
-
-
 
 @app.route('/users', methods=['GET'])
 def getRequest():
@@ -43,7 +43,6 @@ def getRequest():
     'status': '200',
     'msg': 'Success getting all books in library!👍😀'
 })
-
 
 @app.route("/users", methods=['POST'])
 def postRequest():
@@ -107,8 +106,7 @@ def delete_req(id):
     return jsonify({
         'res': 'Deletou',
         'status': '404'
-    })
-    
+    })  
 
 # A serialização é o processo de conversão do estado de um objeto em um formulário
 # que possa ser persistido ou transportado.
