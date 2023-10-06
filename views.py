@@ -121,3 +121,4 @@ def serialize(self):
         'senha': self.senha,
         'id': self.id
     }
+
