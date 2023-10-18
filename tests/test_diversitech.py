@@ -1,3 +1,7 @@
+import sys
+sys.path.append('C:\Users\ls_fo\PycharmProjects\diversitech\tests')
+
+
 from telefonesBr import TelefonesBr
 
 class TestClass:
@@ -5,7 +9,7 @@ class TestClass:
         entrada = '7133812599' #Given-Contexto
         esperado = '(71)3381-2599'
 
-        telefone_teste_resultado = TelefonesBr(entrada)
+        telefone_teste_resultado = TelefonesBr(entrada) #When-Ação
         
-        assert telefone_teste_resultado == esperado
+        assert telefone_teste_resultado == esperado #Then-Desfecho
 
