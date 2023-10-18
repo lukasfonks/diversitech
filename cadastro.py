@@ -1,25 +1,25 @@
-from validacoes.valida_cep import BuscaEndereco
-from validacoes.valida_cpf import DocCpf
-from validacoes.valida_email import Email
+# from validacoes.valida_cep import BuscaEndereco
+# from validacoes.valida_cpf import DocCpf
+# from validacoes.valida_email import Email
 
-class Login:
-    def __init__(self, cpf, senha):
-        self.cpf = cpf
-        self.senha = senha
+# class Login:
+#     def __init__(self, cpf, senha):
+#         self.cpf = cpf
+#         self.senha = senha
 
-class Recrutadores:
-    def __init__(self, cpf, nome, email, senha, empresa):
-        self.cpf = DocCpf(cpf)
-        self.nome = nome
-        self.email = Email(email)
-        self.senha = senha
-        self.empresa = empresa
+# class Recrutadores:
+#     def __init__(self, cpf, nome, email, senha, empresa):
+#         self.cpf = DocCpf(cpf)
+#         self.nome = nome
+#         self.email = Email(email)
+#         self.senha = senha
+#         self.empresa = empresa
 
-    def __str__(self):
-        return (f'CPF:{self.cpf}\n'
-                f'NOME:{self.nome}\n'
-                f'EMAIL:{self.email}\n'
-                f'EMPRESA:{self.empresa}')
+#     def __str__(self):
+#         return (f'CPF:{self.cpf}\n'
+#                 f'NOME:{self.nome}\n'
+#                 f'EMAIL:{self.email}\n'
+#                 f'EMPRESA:{self.empresa}')
 
 class Candidatos:
     def __init__(self, cpf, nome, email, senha, endereco, bairro,
