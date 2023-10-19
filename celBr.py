@@ -7,7 +7,7 @@ def validar_telefone(numero):
 
     # Verificar se o número tem 11 dígitos (incluindo o DDD)
     if len(numero) != 11:
-        return None
+        raise Exception('Número de digitos inválido')
 
     # Formatar o número: (XX) 9XXXX-XXXX
     numero_formatado = f'({numero[:2]}) {numero[2:7]}-{numero[7:]}'
